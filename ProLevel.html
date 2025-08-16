@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9Tanki | Premium Affiliate Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --secondary: #f97316;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --radius: 16px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles - Improved Layout */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border: 3px solid var(--white);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .logo-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .logo-image img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .logo-name {
+            font-size: 28px;
+            font-weight: 800;
+            margin-left: 15px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71, #22c55e, #3b82f6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientAnimation 8s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navigation */
+        .main-nav {
+            background: transparent;
+        }
+
+        .nav-container {
+            display: flex;
+            padding: 0;
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            border-radius: 50px;
+            transition: var(--transition);
+            position: relative;
+            margin: 0 5px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--light-gray);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--white);
+            border-radius: 3px;
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 70%;
+        }
+
+        /* Search Section */
+        .search-section {
+            padding: 30px 0 15px;
+            background-color: var(--white);
+        }
+
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-bar {
+            display: flex;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 2px solid var(--light-gray);
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--primary);
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 16px 20px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .search-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background: var(--primary-light);
+        }
+
+        .suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-top: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+        }
+
+        .suggestion-item {
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--light-gray);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .suggestion-item:hover {
+            background: var(--light);
+        }
+
+        .suggestion-item i {
+            margin-right: 12px;
+            color: var(--primary);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 30px 0 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 15px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            height: 100%;
+            position: relative;
+        }
+
+        .product-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light);
+        }
+
+        .product-slide.active {
+            opacity: 1;
+        }
+
+        .product-slide img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .product-slide:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Navigation Arrows */
+        .slide-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            border: none;
+            color: var(--dark);
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .prev-arrow {
+            left: 4px;
+        }
+
+        .next-arrow {
+            right: 4px;
+        }
+
+        .product-image:hover .slide-arrow {
+            opacity: 1;
+        }
+
+        .slide-arrow:hover {
+            background: var(--white);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Slide Indicators */
+        .slide-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 10;
+        }
+        .product-slide img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            border-radius: 12px;/*-- galery image border Radius */
+}
+
+        .slide-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slide-indicator.active {
+            background: var(--white);
+            transform: scale(1.2);
+        }
+
+        .product-info {
+            padding: 10px;
+        }
+
+        .product-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .product-desc {
+            color: var(--gray);
+            font-size: 13px;
+            margin-bottom: 12px;
+            min-height: 55px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color:var(--primary);
+            margin-bottom: 18px;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+              }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-buy {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 50%;
+            background: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 5px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .btn-buy:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-buy:hover i {
+            transform: translateX(3px);
+        }
+
+        .btn-buy i {
+            transition: var(--transition);
+        }
+
+        .btn-review {
+            background: var(--secondary);
+            color: var(--white);
+            border: 2px solid var(--secondary);
+            padding: 5px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+            width: 50%;
+        }
+
+        .btn-review:hover {
+            background: #e55b00;
+            border-color: #e55b00;
+        }
+
+        .search-results-info {
+            text-align: center;
+            margin: 18px 0;
+            padding: 12px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: none;
+            font-size: 15px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: none;
+        }
+
+        /* Review Modal */
+        .review-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 90%;
+            max-width: 500px;
+            padding: 25px;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--dark);
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .modal-header h3 {
+            font-size: 22px;
+            color: var(--dark);
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+        }
+
+        .review-text {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .author-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+            background: rgba(37, 99, 235, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--primary);
+        }
+
+        .author-details h4 {
+            font-size: 16px;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+
+        .author-details p {
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(249, 115, 22, 0.05));
+            padding: 60px 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: var(--dark);
+        }
+
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 18px;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .stat-box {
+            background: var(--white);
+            padding: 18px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .stat-box i {
+            font-size: 26px;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .stat-box h3 {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .stat-box p {
+            font-size: 13px;
+            color: var(--gray);
+            margin: 0;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 60px 0;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: var(--dark);
+        }
+
+        .contact p {
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 240px;
+        }
+
+        .contact-icon {
+            width: 65px;
+            height: 65px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .contact-icon i {
+            font-size: 26px;
+            color: var(--primary);
+        }
+
+        .contact-details h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .contact-details p {
+            margin: 0;
+            color: var(--gray);
+            font-size: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--light-gray);
+            padding: 50px 0 25px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .disclaimer {
+            max-width: 800px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .copyright {
+            font-size: 13px;
+            color: var(--gray);
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            background: var(--primary-light);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            
+            .about-image {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            .logo-container {
+                margin-bottom: 15px;
+            }
+            
+            .logo-name {
+                font-size: 32px;
+            }
+                        
+            .logo-image {
+                width: 65px;
+                height: 65px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .search-bar input {
+                padding: 14px 18px;
+            }
+            
+            .search-btn {
+                padding: 0 18px;
+            }
+            
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-name {
+                font-size: 28px;
+            }
+            
+            .logo-image {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-link {
+                margin: 4px;
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+
+            .slide-arrow {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation - Fixed Layout -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <div class="logo-image">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=400&q=80" alt="9Tanki Logo">
+                </div>
+                <div class="logo-name">9Tanki</div>
+            </div>
+            
+            <!-- Navigation with Icons -->
+            <nav class="main-nav">
+                <div class="nav-container">
+                    <a href="#home" class="nav-link">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="#products" class="nav-link">
+                        <i class="fas fa-box-open"></i> Products
+                    </a>
+                    <a href="#about" class="nav-link">
+                        <i class="fas fa-info-circle"></i> About
+                    </a>
+                    <a href="#contact" class="nav-link">
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section" id="home">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search for products, brands, or categories...">
+                    <button class="search-btn" id="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="suggestions" id="suggestions">
+                    <!-- Live suggestions will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="search-results-info" id="results-info">
+                Showing <span id="results-count">0</span> results for "<span id="search-term">search</span>"
+            </div>
+            
+            <div class="no-results" id="no-results">
+                <i class="fas fa-search fa-3x" style="color: var(--primary); margin-bottom: 20px;"></i>
+                <h3>No products found</h3>
+                <p>We couldn't find any products matching your search. Try another term.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section with 10 Products -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Products</h2>
+                <p>Discover our handpicked selection of premium products at unbeatable prices</p>
+            </div>
+            
+            <div class="product-grid" id="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-name="new gen laptop" data-category="electronics" data-tags="laptop" data-review="This laptop is incredibly fast and lightweight. The 12th Gen Intel Core i5 processor handles multitasking with ease. The display is bright and vibrant, perfect for both work and entertainment. The only downside is the battery life, which could be better.">
+                    <div class="product-image">
+                        <div class="slideshow-container" data-slideshow="1">
+                            <button class="slide-arrow prev-arrow">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slide-arrow next-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="slide-indicators"></div>
+                            <div class="product-slide active">
+                                <img src="https://m.media-amazon.com/images/I/71pxTqUJOhL._SL1500_.jpg" alt="Lenevo Laptop">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/71yiLHHDcfL._SL1080_.jpg" alt="Lenevo Laptop">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/71PA2dX-XzL._SL1080_.jpg" alt="Lenevo Laptop">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/71B+1cUpVwL._SL1500_.jpg" alt="Lenevo Laptop">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/71B+1cUpVwL._SL1500_.jpg" alt="Lenevo Laptop">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Lenevo Laptop </h3>
+                        <p class="product-desc">V-15, 12th Gen intel core i5 - 1235U 15.6", thin and light weight 1.70 kg laptop || 16 GB RAM/512 GB SSD/ Windows 11 Home with MS Office Home & Student 2021 </p>
+                        <div class="product-price">Rs. 43,999/-</div>
+                        <div class="product-actions">
+                            <a href="https://amzn.to/4mneM1k" class="btn-buy" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </a>
+                            <button class="btn-review" data-review-id="1">
+                                <i class="fas fa-comment-alt"></i> Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" data-name="reebook shue" data-category="shue" data-tags="men shue" data-review="These Reebook shoes are perfect for running and casual wear. They are lightweight and provide excellent support. The design is sleek and modern, making them a great choice for both workouts and everyday use. The only downside is that they run slightly small, so consider sizing up.">
+                    <div class="product-image">
+                        <div class="slideshow-container" data-slideshow="2">
+                            <button class="slide-arrow prev-arrow">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slide-arrow next-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="slide-indicators"></div>
+                            <div class="product-slide active">
+                                <img src="https://m.media-amazon.com/images/I/51QeLvw8TPL._SY695_.jpg" alt="men shue">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/71XSuv2x5sL._SY535_.jpg" alt="men shue">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/71XVWpaOlmL._SY535_.jpg" alt="men shue">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/61JnrfeJpiL._SY535_.jpg" alt="men shue">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/71C2wdsUrwL._SY535_.jpg" alt="men shue">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title"> reebook shue</h3>
+                        <p class="product-desc">Reebook shoe for men | ultra running lite</p>
+                        <div class="product-price">Rs.1,679/-</div>
+                        <div class="product-actions">
+                            <a href="https://amzn.to/4fthMHr" class="btn-buy" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </a>
+                            <button class="btn-review" data-review-id="2">
+                                <i class="fas fa-comment-alt"></i> Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" data-name="Wireless keyboard" data-category="keyboard" data-tags="keyboard" data-review="This wireless keyboard is a game-changer for my workspace. The keys are responsive and quiet, making typing a pleasure. The battery life is impressive, lasting weeks on a single charge. The only minor issue is the lack of backlighting, but overall, it's an excellent choice for both work and casual use.">
+                    <div class="product-image">
+                        <div class="slideshow-container" data-slideshow="3">
+                            <button class="slide-arrow prev-arrow">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slide-arrow next-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="slide-indicators"></div>
+                            <div class="product-slide active">
+                                <img src="https://m.media-amazon.com/images/I/51uWNl68x2L._SY450_.jpg" alt="keyboard">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/613l5BVkxGL._SY450_.jpg" alt="keyboard">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/61EsBCKoQvL._SY450_.jpg" alt="keyboard">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/61rkbolWFLL._SY450_.jpg" alt="keyboard">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/61iDwGrpBRL._SY450_.jpg" alt="keyboard">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">wireless keyboard</h3>
+                        <p class="product-desc">Portronics Bubble 2.0: Wireless keyboard with Bluetooth & 2.4GHz, connects 3 devices, compact TKL, 10m range, shortcut keys, grey color.</p>
+                        <div class="product-price">Rs. 1,199/-</div>
+                        <div class="product-actions">
+                            <a href="https://amzn.to/3Uin8eP" class="btn-buy" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </a>
+                            <button class="btn-review" data-review-id="3">
+                                <i class="fas fa-comment-alt"></i> Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" data-name="hp Printer" data-category="Printer" data-tags="all in one Printer" data-review="This HP printer is a reliable all-in-one solution for my home office. It prints, scans, and copies with ease. The wireless connectivity is a great feature, allowing me to print from my phone or laptop without any hassle. The only drawback is that it can be a bit noisy during printing, but overall, it's a solid choice for everyday use.">
+                    <div class="product-image">
+                        <div class="slideshow-container" data-slideshow="4">
+                            <button class="slide-arrow prev-arrow">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slide-arrow next-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="slide-indicators"></div>
+                            <div class="product-slide active">
+                                <img src="https://m.media-amazon.com/images/I/61L0EfQYZTL._SY450_.jpg" alt="HP Printer">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/81B9wdxkqpL._SY450_.jpg" alt="HP Printer">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/71Ie-0SLDFL._SY450_.jpg" alt="HP Printer">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/717S4qED2xL._SY450_.jpg" alt="HP Printer">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/717S4qED2xL._SY450_.jpg" alt="HP Printer">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">all in one HP Printer</h3>
+                        <p class="product-desc">HP Laser MFP 1188w: Wireless print, copy, scan; Ethernet & USB; up to 21 ppm; 150-sheet input; 100-sheet output; 10,000-page duty; 1-year warranty; B/W.</p>
+                        <div class="product-price">Rs. 17,499/-</div>
+                        <div class="product-actions">
+                            <a href="https://amzn.to/3J8KHEz" class="btn-buy" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </a>
+                            <button class="btn-review" data-review-id="4">
+                                <i class="fas fa-comment-alt"></i> Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card" data-name="Citaphil Sunscreen" data-category="Skin Prodector" data-tags="skin care cream" data-review="Cetaphil Sunscreen is a must-have for anyone looking to protect their skin from harmful UV rays. The lightweight formula absorbs quickly and doesn't leave a greasy residue. It's perfect for daily use, and I love that it's suitable for all skin types. The only downside is that it could be a bit more water-resistant, but overall, it's an excellent choice for sun protection.">
+                    <div class="product-image">
+                        <div class="slideshow-container" data-slideshow="5">
+                            <button class="slide-arrow prev-arrow">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slide-arrow next-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="slide-indicators"></div>
+                            <div class="product-slide active">
+                                <img src="https://m.media-amazon.com/images/I/51-5gwm3voL._SX679_.jpg" alt="Citaphil Sunscreen">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/619yuJPCCbL._SX679_.jpg" alt="Citaphil Sunscreen">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/61BZ+NwaVML._SX679_.jpg" alt="Citaphil Sunscreen">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/61TpYDuRxvL._SX679_.jpg" alt="Citaphil Sunscreen">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/61fUp+hxPyL._SL1000_.jpg" alt="Citaphil Sunscreen">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Citaphil Sunscreen</h3>
+                        <p class="product-desc">Cetaphil Sun SPF 30 Sunscreen Gel, White, 100ml – Hydrate & nourish your skin with chemical-free sun protection.</p>
+                        <div class="product-price">Rs. 1,114/-</div>
+                        <div class="product-actions">
+                            <a href="https://amzn.to/4msg9fT" class="btn-buy" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </a>
+                            <button class="btn-review" data-review-id="5">
+                                <i class="fas fa-comment-alt"></i> Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card" data-name="skin care " data-category="skin care" data-tags="skin care" data-review="This SESDERMA skin care cream is a game-changer for my daily routine. The vitamin C formula brightens my complexion and gives my skin a radiant glow. It's lightweight and absorbs quickly, making it perfect for layering under makeup. The only downside is the price, but the results are worth it.">
+                    <div class="product-image">
+                        <div class="slideshow-container" data-slideshow="6">
+                            <button class="slide-arrow prev-arrow">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slide-arrow next-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="slide-indicators"></div>
+                            <div class="product-slide active">
+                                <img src="https://m.media-amazon.com/images/I/515TxnbzQtL._SX522_.jpg" alt="skin care cream">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/41bkf6Mb8JL._SX522_.jpg" alt="Fitness Tracker">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">skin care SESDERMA</h3>
+                        <p class="product-desc">SES DERMA skin care product C - vitamin radiance Glowing</p>
+                        <div class="product-price">Rs. 3,650/-</div>
+                        <div class="product-actions">
+                            <a href="https://amzn.to/4fAKCFW" class="btn-buy" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </a>
+                            <button class="btn-review" data-review-id="6">
+                                <i class="fas fa-comment-alt"></i> Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="product-card" data-name="Androide Mobile" data-category="electronics" data-tags="Mobile Phone" data-review="The One Plus 13s is a powerhouse of a smartphone. The Snapdragon 8 Elite processor ensures lightning-fast performance, and the battery life is exceptional. The display is stunning, and the camera takes incredible photos. The only downside is that it doesn't come with a charger in the box, which is a bit disappointing for such a premium device.">
+                    <div class="product-image">
+                        <div class="slideshow-container" data-slideshow="7">
+                            <button class="slide-arrow prev-arrow">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slide-arrow next-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="slide-indicators"></div>
+                            <div class="product-slide active">
+                                <img src="https://m.media-amazon.com/images/I/61cNdwti0QL._SX569_.jpg" alt="Mobile">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/71wpniexbaL._SX679_.jpg" alt="Mobile">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/51AQHREZtrL._SX679_.jpg" alt="Mobile">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/71lOiH8WQuL._SX679_.jpg" alt="Mobile">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/61oGHKF+y8L._SX679_.jpg" alt="Mobile">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">One Plus 13s</h3>
+                        <p class="product-desc">Snapdragon 8 Elite | Best Battery Life | Lifetime Display Warranty | 12GB + 512GB | Black Velvet</p>
+                        <div class="product-price">Rs. 59,999/-</div>
+                        <div class="product-actions">
+                            <a href="https://amzn.to/3USA5fv" class="btn-buy" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </a>
+                            <button class="btn-review" data-review-id="7">
+                                <i class="fas fa-comment-alt"></i> Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="product-card" data-name="Camera" data-category="electronics" data-tags="camera for Youtubers" data-review="This camera is a game-changer for content creators. The 8K video quality is stunning, and the low-light performance is impressive. The built-in Wi-Fi makes it easy to transfer files to my phone or computer. The only downside is that it can be a bit bulky for vlogging, but the image quality makes up for it.">
+                    <div class="product-image">
+                        <div class="slideshow-container" data-slideshow="8">
+                            <button class="slide-arrow prev-arrow">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slide-arrow next-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="slide-indicators"></div>
+                            <div class="product-slide active">
+                                <img src="https://m.media-amazon.com/images/I/71yTa6lqhnL._SY450_.jpg" alt="Camera">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/81FiDeOB1oL._SY450_.jpg" alt="Camera">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/81IYHSyzwxL._SY450_.jpg" alt="Camera">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/712+-u6cnlL._SY450_.jpg" alt="Camera">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/81-YGil6R0L._SL1500_.jpg" alt="Camera">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">camera 8K</h3>
+                        <p class="product-desc">camera for youtubers and others pepole can use to make up to 8K HD vedio quality | camcorder 48 Mp 15 FPS UHD wifi  Ir Night vision handheled</p>
+                        <div class="product-price">Rs. 22,999/-</div>
+                        <div class="product-actions">
+                            <a href="https://amzn.to/47tDbxU" class="btn-buy" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </a>
+                            <button class="btn-review" data-review-id="8">
+                                <i class="fas fa-comment-alt"></i> Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 9 -->
+                <div class="product-card" data-name="camera" data-category="camera" data-tags="4k camera" data-review="The Canon EOS R8 is a fantastic camera for both photography and videography. The 24.2 MP sensor captures stunning detail, and the 4K video recording is top-notch. The autofocus system is fast and accurate, making it easy to capture sharp images. The only downside is that it can be a bit pricey, but the quality justifies the investment for serious photographers.">
+                    <div class="product-image">
+                        <div class="slideshow-container" data-slideshow="9">
+                            <button class="slide-arrow prev-arrow">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slide-arrow next-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="slide-indicators"></div>
+                            <div class="product-slide active">
+                                <img src="https://m.media-amazon.com/images/I/61bpFmbi99L._SY450_.jpg" alt="Camera">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/41ZFlqajGGL._SX450_.jpg" alt="Camera">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/61RlvWvcl5L._SY450_.jpg" alt="Camera">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/61QyzEuMmDL._SY450_.jpg" alt="Camera">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://m.media-amazon.com/images/I/51uJ3IPFpKL._SY450_.jpg" alt="Camera">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Canon EOS R8</h3>
+                        <p class="product-desc">R8 Full - Frem 24.2 Mp Microless camera Body Capture 4K full HD Vedio Recording</p>
+                        <div class="product-price">Rs. 1,13,088/-</div>
+                        <div class="product-actions">
+                            <a href="https://amzn.to/45sxRrY" class="btn-buy" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </a>
+                            <button class="btn-review" data-review-id="9">
+                                <i class="fas fa-comment-alt"></i> Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 10 
+                <div class="product-card" data-name="external ssd" data-category="computers" data-tags="storage portable" data-review="This SSD is incredibly fast - transferring large files is a breeze. The compact design makes it easy to carry anywhere. It's surprisingly durable too. The price per GB is higher than traditional hard drives, but the speed justifies it for professional use.">
+                    <div class="product-image">
+                        <div class="slideshow-container" data-slideshow="10">
+                            <button class="slide-arrow prev-arrow">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slide-arrow next-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="slide-indicators"></div>
+                            <div class="product-slide active">
+                                <img src="https://images.unsplash.com/photo-1593640495390-1ff7c3f60e9b?auto=format&fit=crop&w=500&q=80" alt="External SSD">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?auto=format&fit=crop&w=500&q=80" alt="External SSD">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=500&q=80" alt="External SSD">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?auto=format&fit=crop&w=500&q=80" alt="External SSD">
+                            </div>
+                            <div class="product-slide">
+                                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=500&q=80" alt="External SSD">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">1TB External SSD</h3>
+                        <p class="product-desc">Ultra-fast portable storage with USB-C connectivity.</p>
+                        <div class="product-price">$129.99</div>
+                        <div class="product-actions">
+                            <a href="https://amzn.to/4mneM1k" class="btn-buy" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Buy Now
+                            </a>
+                            <button class="btn-review" data-review-id="10">
+                                <i class="fas fa-comment-alt"></i> Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Our Store</h2>
+                <p>Learn more about our mission and values</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://m.media-amazon.com/images/G/01/Associates/Marketing/AC/InfluencerHub/final/Bounties_US.png" alt="Our Team">
+                </div>
+                
+                <div class="about-text">
+                    <h2>Your Trusted Shopping Destination</h2>
+                    <p>9Tanki was founded in 2020 with a simple mission: to connect shoppers with the best products at the most competitive prices. We've grown from a small team of shopping enthusiasts to a leading affiliate store with thousands of satisfied customers.</p>
+                    <p>Our team carefully selects each product based on quality, value, and customer reviews. We partner with top brands to bring you exclusive deals and discounts you won't find anywhere else.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-box">
+                            <i class="fas fa-users"></i>
+                            <h3>50K+</h3>
+                            <p>Happy Customers</p>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-box-open"></i>
+                            <h3>2K+</h3>
+                            <p>Premium Products</p>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-award"></i>
+                            <h3>15+</h3>
+                            <p>Industry Awards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                    <p>Get in touch with our team</p>
+                </div>
+                
+                <p>Have questions about our products or need assistance with an order? Our team is ready to help you with any inquiries.</p>
+                
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Our Location</h4>
+                            <p>123 Shopping Street, Retail District, City Center</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone Number</h4>
+                            <p>+1 (800) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email Address</h4>
+                            <p>support@9tanki.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="disclaimer">
+                    <strong>Affiliate Disclosure:</strong> 9Tanki is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate, we earn from qualifying purchases. Product prices and availability are accurate as of the date/time indicated and are subject to change.
+                </p>
+                <p class="copyright">
+                    &copy; 2023 9Tanki Affiliate Store. All rights reserved. | Designed with ❤️ for smart shoppers
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Review Modal -->
+    <div class="review-modal" id="reviewModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <h3>Review</h3>
+            </div>
+            <div class="modal-body">
+                <p class="review-text" id="reviewText"></p>
+                <div class="review-author">
+                    <div class="author-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="author-details">
+                        <h4>9Tanki</h4>
+                        <p>Verified Purchaser & Tech Expert</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Initialize slideshows for each product card
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize slideshows
+            const slideshows = document.querySelectorAll('.slideshow-container');
+            slideshows.forEach(slideshow => {
+                const slides = slideshow.querySelectorAll('.product-slide');
+                const prevArrow = slideshow.querySelector('.prev-arrow');
+                const nextArrow = slideshow.querySelector('.next-arrow');
+                const indicatorsContainer = slideshow.querySelector('.slide-indicators');
+                let currentSlide = 0;
+                let intervalId = null;
+                
+                // Create indicators
+                slides.forEach((_, index) => {
+                    const indicator = document.createElement('div');
+                    indicator.className = 'slide-indicator';
+                    if (index === 0) indicator.classList.add('active');
+                    indicator.addEventListener('click', () => {
+                        goToSlide(index);
+                        resetInterval();
+                    });
+                    indicatorsContainer.appendChild(indicator);
+                });
+                
+                const indicators = slideshow.querySelectorAll('.slide-indicator');
+                
+                function updateSlide() {
+                    slides.forEach(slide => slide.classList.remove('active'));
+                    indicators.forEach(indicator => indicator.classList.remove('active'));
+                    
+                    slides[currentSlide].classList.add('active');
+                    indicators[currentSlide].classList.add('active');
+                }
+                
+                function nextSlide() {
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    updateSlide();
+                }
+                
+                function prevSlide() {
+                    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                    updateSlide();
+                }
+                
+                function goToSlide(index) {
+                    currentSlide = index;
+                    updateSlide();
+                }
+                
+                function startInterval() {
+                    intervalId = setInterval(nextSlide, 10000);
+                }
+                
+                function resetInterval() {
+                    clearInterval(intervalId);
+                    startInterval();
+                }
+                
+                // Add event listeners for arrows
+                prevArrow.addEventListener('click', () => {
+                    prevSlide();
+                    resetInterval();
+                });
+                
+                nextArrow.addEventListener('click', () => {
+                    nextSlide();
+                    resetInterval();
+                });
+                
+                // Start the slideshow
+                startInterval();
+                
+                // Pause on hover
+                slideshow.addEventListener('mouseenter', () => {
+                    clearInterval(intervalId);
+                });
+                
+                slideshow.addEventListener('mouseleave', () => {
+                    startInterval();
+                });
+            });
+            
+            // Search functionality and suggestions
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+            const suggestionsContainer = document.getElementById('suggestions');
+            const productGrid = document.getElementById('product-grid');
+            const resultsInfo = document.getElementById('results-info');
+            const resultsCount = document.getElementById('results-count');
+            const searchTerm = document.getElementById('search-term');
+            const noResults = document.getElementById('no-results');
+            
+            // Collect product data for live suggestions
+            const products = Array.from(document.querySelectorAll('.product-card'));
+            const productTitles = products.map(product => 
+                product.querySelector('.product-title').textContent
+            );
+            
+            // Show suggestions on input focus
+            searchInput.addEventListener('focus', function() {
+                showSuggestions();
+            });
+            
+            // Hide suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+                    suggestionsContainer.style.display = 'none';
+                }
+            });
+            
+            // Filter suggestions on input
+            searchInput.addEventListener('input', function() {
+                if (this.value.trim() === '') {
+                    // Clear search when input is empty
+                    resetSearch();
+                    suggestionsContainer.style.display = 'none';
+                } else {
+                    showSuggestions();
+                }
+            });
+            
+            // Search when enter is pressed
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // Search button click
+            searchButton.addEventListener('click', function() {
+                performSearch();
+            });
+            
+            // Reset search function
+            function resetSearch() {
+                products.forEach(product => {
+                    product.style.display = 'block';
+                });
+                resultsInfo.style.display = 'none';
+                noResults.style.display = 'none';
+            }
+            
+            // Show live suggestions
+            function showSuggestions() {
+                const inputValue = searchInput.value.toLowerCase().trim();
+                
+                if (!inputValue) {
+                    suggestionsContainer.style.display = 'none';
+                    return;
+                }
+                
+                // Filter product titles that match input
+                const filteredSuggestions = productTitles.filter(title => 
+                    title.toLowerCase().includes(inputValue)
+                ).slice(0, 5); // Limit to 5 suggestions
+                
+                if (filteredSuggestions.length > 0) {
+                    suggestionsContainer.innerHTML = '';
+                    filteredSuggestions.forEach(title => {
+                        const suggestionItem = document.createElement('div');
+                        suggestionItem.className = 'suggestion-item';
+                        suggestionItem.innerHTML = `
+                            <i class="fas fa-search"></i>
+                            ${title}
+                        `;
+                        suggestionItem.addEventListener('click', function() {
+                            searchInput.value = title;
+                            suggestionsContainer.style.display = 'none';
+                            performSearch();
+                        });
+                        suggestionsContainer.appendChild(suggestionItem);
+                    });
+                    suggestionsContainer.style.display = 'block';
+                } else {
+                    suggestionsContainer.style.display = 'none';
+                }
+            }
+            
+            // Perform search
+            function performSearch() {
+                const searchValue = searchInput.value.trim().toLowerCase();
+                
+                if (searchValue === '') {
+                    resetSearch();
+                    return;
+                }
+                
+                let foundCount = 0;
+                
+                products.forEach(product => {
+                    const name = product.dataset.name.toLowerCase();
+                    const category = product.dataset.category.toLowerCase();
+                    const tags = product.dataset.tags.toLowerCase();
+                    const title = product.querySelector('.product-title').textContent.toLowerCase();
+                    const desc = product.querySelector('.product-desc').textContent.toLowerCase();
+                    
+                    if (name.includes(searchValue) || 
+                        category.includes(searchValue) || 
+                        tags.includes(searchValue) || 
+                        title.includes(searchValue) || 
+                        desc.includes(searchValue)) {
+                        product.style.display = 'block';
+                        foundCount++;
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+                
+                // Update results info
+                if (foundCount > 0) {
+                    resultsCount.textContent = foundCount;
+                    searchTerm.textContent = searchValue;
+                    resultsInfo.style.display = 'block';
+                    noResults.style.display = 'none';
+                } else {
+                    resultsInfo.style.display = 'none';
+                    noResults.style.display = 'block';
+                }
+                
+                // Hide suggestions
+                suggestionsContainer.style.display = 'none';
+            }
+            
+            // Handle "Buy Now" button hover effects
+            const buyButtons = document.querySelectorAll('.btn-buy');
+            buyButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+                
+                // Add click effect - revert to Buy Now after 3 seconds
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const originalHTML = this.innerHTML;
+                    
+                    // Change to "Thanks a lot"
+                    this.innerHTML = '<i class="fas fa-check"></i> Thanks a lot';
+                    this.style.background = '#10b981';
+                    this.style.borderColor = '#10b981';
+                    
+                    // Open affiliate link in new tab after a small delay
+                    setTimeout(() => {
+                        window.open(this.href, '_blank');
+                    }, 500);
+                    
+                    // Revert to original after 3 seconds
+                    setTimeout(() => {
+                        this.innerHTML = originalHTML;
+                        this.style.background = '';
+                        this.style.borderColor = '';
+                    }, 3000);
+                });
+            });
+            
+            // Review Modal Functionality
+            const reviewModal = document.getElementById('reviewModal');
+            const reviewText = document.getElementById('reviewText');
+            const closeModal = document.getElementById('closeModal');
+            const reviewButtons = document.querySelectorAll('.btn-review');
+            
+            // Show review when "Review" is clicked
+            reviewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    const review = productCard.dataset.review;
+                    reviewText.textContent = review;
+                    reviewModal.style.display = 'flex';
+                });
+            });
+            
+            // Close modal when X is clicked
+            closeModal.addEventListener('click', function() {
+                reviewModal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside modal content
+            window.addEventListener('click', function(e) {
+                if (e.target === reviewModal) {
+                    reviewModal.style.display = 'none';
+                }
+            });
+            
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Scroll to top functionality
+            const scrollTopBtn = document.getElementById('scrollTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
